@@ -1,0 +1,17 @@
+{
+  "definitions": {
+      "HttpMethod": {
+          "type": "object"
+          , "$$target": "#/definitions/HttpMethod"
+          , "description": "An HTTP Method"
+          , "properties": {
+              "requestBody": { "$ref": "#/definitions/HttpRequestEntity" }
+              ,"responses": {
+                  "type": "object"
+                  , "description": "A dictionary of valid HttpResponseEntity for the request, by HTTP response code."
+                  , "additionalProperties": { "$ref": "#/definitions/HttpResponseEntity" }
+              }
+          }
+      }
+  }
+}

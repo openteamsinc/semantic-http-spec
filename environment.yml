@@ -1,0 +1,10 @@
+channels:
+- conda-forge
+- defaults
+dependencies:
+- sphinx
+- sphinxcontrib-httpdomain
+- sphinxcontrib-httpexample
+- pip:
+  - sphinx-jsonschema
+name: sphinx-doc

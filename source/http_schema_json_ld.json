@@ -1,0 +1,15 @@
+{
+  "xsd": "http://www.w3.org/2001/XMLSchema#"
+  , "rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+  , "rdfs": "http://www.w3.org/2000/01/rdf-schema#"
+  , "http":	"http://www.w3.org/2011/http#"
+  , "http-methods": "http://www.w3.org/2011/http-methods#"
+  , "get": { "@id": "http-methods:GET" }
+  , "post": { "@id": "http-methods:POST" }
+  , "put": { "@id": "http-methods:PUT" }
+  , "delete": { "@id": "http-methods:DELETE" }
+  , "options": { "@id": "http-methods:OPTIONS" }
+  , "title": { "@id": "rdfs:label" }
+  , "description": { "@id": "rdfs:comment" }
+  TBD...
+}

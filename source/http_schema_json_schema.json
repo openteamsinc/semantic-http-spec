@@ -1,0 +1,65 @@
+{
+    "$id": "TBD"
+    , "$schema": "http://json-schema.org/draft-04/schema"
+    , "title": "HTTP Schema Resource"
+    , "description": "A resource detailing the HTTP methods supported by a resource along with links to a schema describing that resource and a linked data description of the resource."
+    , "type": "object"
+    , "properties": {
+        "get": { "$ref": "#/definitions/HttpMethod" }
+        , "put": { "$ref": "#/definitions/HttpMethod" }
+        , "post": { "$ref": "#/definitions/HttpMethod" }
+        , "delete": { "$ref": "#/definitions/HttpMethod" }
+        , "options": { "$ref": "#/definitions/HttpMethod" }
+    }
+    , "definitions": {
+        "HttpMethod": {
+            "type": "object"
+            , "$$target": "#/definitions/HttpMethod"
+            , "description": "An HTTP Method"
+            , "properties": {
+                "requestBody": { "$ref": "#/definitions/HttpRequestEntity" }
+                ,"responses": {
+                    "type": "object"
+                    , "description": "A dictionary of valid HttpResponseEntity for the request, by HTTP response code."
+                    , "additionalProperties": { "$ref": "#/definitions/HttpResponseEntity" }
+                }
+            }
+        }
+        , "HttpRequestEntity": {
+            "type": "object"
+            , "description": "The entity that must be provided with the request."
+            , "properties": {
+                "description": { "type": "string" }
+                , "required": { "type": "boolean" }
+                , "content": { "$ref": "#/definitinos/EntityContent" }
+            }
+        }
+        , "HttpResponseEntity": {
+            "type": "object"
+            , "description": "An HTTP response."
+            , "properties": { 
+                "description": { "type": "string" }
+                , "content": { "$ref": "#/definitions/EntityContent" }
+            }
+        }
+        , "EntityContent": {
+            "type": "object"
+            , "description": "An object whose property keys are MIME types and property values are objects describing the MIME type."
+            , "additionalProperties": { "$ref": "#/definitions/EntityContentType" }
+        }
+        , "EntityContentType": {
+            "type": "object"
+            , "description": "Details about resources defining and/or describing a specific entity content type."
+            , "properties": {
+                "context": {
+                    "type": "string"
+                    , "description": "If the entity may be mapped into RDF, this property **MUST** be the URL of a resource defning how to map the entity to RDF statemensts. For example, the URL of a JSON-LD context."
+                }
+                , "schema": {
+                    "type": "string"
+                    , "description": "If the entity is described by a schema defining valid and/or expected content of the entity, this property **MUST** be the URL of a resource defining the schema for the entity. For example, a JSON Schema."
+                }
+            }
+        }
+    }
+}
