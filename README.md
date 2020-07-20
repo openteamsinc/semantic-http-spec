@@ -1,3 +1,6 @@
+# semantic-http-spec
+Specification of a semantic resource protocol building on HTTP. Specifies additional headers and content on HTTP requests and responses to support rich discovery of schema and semantic web data for resources made available via HTTP.
+
 ## Welcome to GitHub Pages
 
 You can use the [editor on GitHub](https://github.com/openteamsinc/semantic-http-spec/edit/master/README.md) to maintain and preview the content for your website in Markdown files.
