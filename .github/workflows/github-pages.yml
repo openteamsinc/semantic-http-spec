@@ -2,7 +2,7 @@ name: Publish gh-pages
 
 on:
   push:
-    branches: [ master ]
+    branches: [ utabe-patch-1 ]
 
 jobs:
   Publish:
