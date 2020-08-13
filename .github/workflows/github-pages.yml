@@ -2,7 +2,7 @@ name: Publish gh-pages
 
 on:
   push:
-    branches: [ utabe-patch-1 ]
+    branches: [ utabe-branch-1 ]
 
 jobs:
   Publish:
@@ -20,7 +20,11 @@ jobs:
 #         channels: conda-forge
     - name: Conda install
       shell: bash -l {0}
-      run: conda install sphinx    
+      run: conda install sphinx 
+    
+    - name: solar
+      shell: bash -l {0}
+      run: pip install solar-theme    
     
     - name: Build docs
       shell: bash -l {0}
