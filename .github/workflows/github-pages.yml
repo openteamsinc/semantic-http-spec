@@ -14,10 +14,10 @@ jobs:
     - uses: goanpeca/setup-miniconda@v1
       with:
         auto-update-conda: true
-        python-version: ${{ matrix.python-version }}
-#         activate-environment: scrud-django
-#         environment-file: environment-dev.yml
-#         channels: conda-forge
+        python-version: 3.8
+        activate-environment: sphinx-doc
+        environment-file: environment.yml
+        channels: conda-forge
     - name: Conda install
       shell: bash -l {0}
       run: conda install sphinx 
