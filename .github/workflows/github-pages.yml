@@ -28,7 +28,10 @@ jobs:
     
     - name: Build docs
       shell: bash -l {0}
-      run: make html
+      run: |
+        make clean
+        make html
+        cp -r build/html/* docs/
 #     # Builds the sphinx docs
 #     - uses: ammaraskar/sphinx-action@master
 #       with:
