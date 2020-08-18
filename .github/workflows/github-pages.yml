@@ -23,7 +23,7 @@ jobs:
       run: |
         make clean
         make html
-        cp -r build/html/* docs/
+        cp -r build/html/* documents/
 
 #     # Publish built docs to gh-pages branch.
 #     # ===============================
