@@ -23,24 +23,26 @@ jobs:
       run: |
         make clean
         make html
-        ls
-        mkdir documents
-        cp -r build/html/* documents/
+        mkdir gh-pages
+        cp -r build/html/* gh-pages/
 
 #     # Publish built docs to gh-pages branch.
 #     # ===============================
     - name: Commit documentation changes
+      env:
+        github_token: ${{ secrets.SEMANTIC_HTTP_SPEC_KEY }}
       run: |
-        git clone https://github.com/openteamsinc/semantic-http-spec.git --branch docs-config --single-branch docs-config
+        git clone https://github.com/openteamsinc/semantic-http-spec.git --branch=docs-config docs-config
         git config --local user.email "action@github.com"
         git config --local user.name "GitHub Action"
         git add .
         git commit -m "Update documentation" -a || true
+        git push
 #         # The above command will fail if no changes were present, so we ignore
 #         # that.
-    - name: Push changes
-      uses: ad-m/github-push-action@master
-      with:
-        branch: docs-config
-        directory: documents
-        github_token: ${{ secrets.SEMANTIC_HTTP_SPEC_KEY }}
+#     - name: Push changes
+#       uses: ad-m/github-push-action@master
+#       with:
+#         branch: docs-config
+#         directory: documents
+#         github_token: ${{ secrets.SEMANTIC_HTTP_SPEC_KEY }}
