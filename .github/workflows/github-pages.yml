@@ -41,6 +41,6 @@ jobs:
     - name: Push changes
       uses: ad-m/github-push-action@master
       with:
-        branch: docs
-        directory: docs
+        branch: docs-config
+        directory: documents
         github_token: ${{ secrets.SEMANTIC_HTTP_SPEC_KEY }}
