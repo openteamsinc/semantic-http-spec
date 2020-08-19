@@ -39,7 +39,7 @@ jobs:
         cd docs-config
         git config --local user.email "action@github.com"
         git config --local user.name "GitHub Action"
-        cp -R ${REPO_PATH}/build/html/* .
+        cp -R ${REPO_PATH}/build/html/* docs/
         touch .nojekyll
         git add .nojekyll
         git add .
@@ -52,5 +52,5 @@ jobs:
       with:
         branch: docs-config
         force: True
-#         directory: /tmp/docs-config
+        directory: /tmp/docs-config/docs
         github_token: ${{ secrets.SEMANTIC_HTTP_SPEC_KEY }}
