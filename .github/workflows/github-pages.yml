@@ -35,8 +35,8 @@ jobs:
         export REPO_PATH=$(pwd)
         cd /tmp/
         git clone https://github.com/openteamsinc/semantic-http-spec.git --branch=docs-config docs-config
-        git config --local user.email "action@github.com"
-        git config --local user.name "GitHub Action"
+        git config --global user.email "action@github.com"
+        git config --global user.name "GitHub Action"
         cd docs-config
         cp -R ${REPO_PATH}/build/html/* .
         touch .nojekyll
