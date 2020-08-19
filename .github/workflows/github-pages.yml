@@ -18,23 +18,28 @@ jobs:
         activate-environment: sphinx-doc
         environment-file: environment.yml    
     
-    - name: Build docs
-      shell: bash -l {0}
-      run: |
-        make clean
-        make html
-        mkdir gh-pages
-        cp -r build/html/* gh-pages/
+#     - name: Build docs
+#       shell: bash -l {0}
+#       run: |
+#         make clean
+#         make html
+#         mkdir gh-pages
+#         cp -r build/html/* gh-pages/
 
 #     # Publish built docs to gh-pages branch.
 #     # ===============================
-    - name: Commit documentation changes
+    - name: Build and Commit documentation changes
+      shell: bash -l {0}
       env:
         github_token: ${{ secrets.SEMANTIC_HTTP_SPEC_KEY }}
       run: |
         git clone https://github.com/openteamsinc/semantic-http-spec.git --branch=docs-config docs-config
         git config --local user.email "action@github.com"
         git config --local user.name "GitHub Action"
+        make clean
+        make html
+        cd docs-config
+        cp -r ../build/html/* ./docs
         git add .
         git commit -m "Update documentation" -a || true
         git push
