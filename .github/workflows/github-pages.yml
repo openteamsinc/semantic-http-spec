@@ -35,7 +35,7 @@ jobs:
         export REPO_PATH=$(pwd)
         ls
         cd /tmp/
-        git clone https://github.com/openteamsinc/semantic-http-spec.git --branch=docs-config docs-config
+        git clone utabe:${github_token}@github.com/openteamsinc/semantic-http-spec.git --branch=docs-config docs-config
         cd docs-config
         git config --local user.email "action@github.com"
         git config --local user.name "GitHub Action"
