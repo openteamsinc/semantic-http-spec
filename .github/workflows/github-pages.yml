@@ -2,7 +2,7 @@ name: Publish gh-pages
 
 on:
   push:
-    branches: [ utabe-patch-1 ]
+    branches: [ master ]
 
 jobs:
   Publish:
@@ -28,8 +28,8 @@ jobs:
       run: |
         export REPO_PATH=$(pwd)
         cd /tmp/
-        git clone https://github.com/openteamsinc/semantic-http-spec.git --branch=docs-config docs-config
-        cd docs-config
+        git clone https://github.com/openteamsinc/semantic-http-spec.git --branch=gh-pages gh-pages
+        cd gh-pages
         git config --local user.email "action@github.com"
         git config --local user.name "GitHub Action"
         cp -R ${REPO_PATH}/build/html/* docs/
@@ -41,7 +41,7 @@ jobs:
     - name: Push changes
       uses: ad-m/github-push-action@master
       with:
-        branch: docs-config
+        branch: gh-pages
         force: True
-        directory: /tmp/docs-config/docs
+        directory: /tmp/gh-pages/docs
         github_token: ${{ secrets.SEMANTIC_HTTP_SPEC_KEY }}
