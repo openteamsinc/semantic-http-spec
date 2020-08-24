@@ -11,28 +11,37 @@ jobs:
     # Checks-out the repository 
     - uses: actions/checkout@v2
       
-    # Builds the sphinx docs
-    - uses: ammaraskar/sphinx-action@master
+    - uses: goanpeca/setup-miniconda@v1
       with:
-        build-command: "make html"
-        docs-folder: "docs/"
+        auto-update-conda: true
+        python-version: 3.8
+        activate-environment: sphinx-doc
+        environment-file: environment.yml    
     
-    # Publish built docs to gh-pages branch.
-    # ===============================
+    - name: Build docs
+      shell: bash -l {0}
+      run: |
+        make clean
+        make html
+        
     - name: Commit documentation changes
       run: |
-        git clone https://github.com/openteamsinc/semantic-http-spec.git --branch gh-pages --single-branch gh-pages
-        cp -r docs/_build/html/* gh-pages/
+        export REPO_PATH=$(pwd)
+        cd /tmp/
+        git clone https://github.com/openteamsinc/semantic-http-spec.git --branch=gh-pages gh-pages
         cd gh-pages
         git config --local user.email "action@github.com"
         git config --local user.name "GitHub Action"
+        cp -R ${REPO_PATH}/build/html/* docs/
+        touch .nojekyll
+        git add .nojekyll
         git add .
         git commit -m "Update documentation" -a || true
-        # The above command will fail if no changes were present, so we ignore
-        # that.
+
     - name: Push changes
       uses: ad-m/github-push-action@master
       with:
         branch: gh-pages
-        directory: gh-pages
+        force: True
+        directory: /tmp/gh-pages/docs
         github_token: ${{ secrets.SEMANTIC_HTTP_SPEC_KEY }}

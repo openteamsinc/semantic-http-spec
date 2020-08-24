@@ -7,4 +7,5 @@ dependencies:
 - sphinxcontrib-httpexample
 - pip:
   - sphinx-jsonschema
+  - solar-theme
 name: sphinx-doc
