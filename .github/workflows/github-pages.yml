@@ -33,8 +33,7 @@ jobs:
         git config --local user.email "action@github.com"
         git config --local user.name "GitHub Action"
         cp -R ${REPO_PATH}/build/html/* docs/
-        touch .nojekyll
-        git add .nojekyll
+        touch docs/.nojekyll
         git add .
         git commit -m "Update documentation" -a || true
 
